@@ -1,0 +1,19 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: bonafyde
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: trellodev
+service: trello-sync-service
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: dev
+  region: us-east-1
+
+functions:
+  syncTrelloCards:
+    handler: handler.Cards
+    events:
+      - http:
+          path: trello-sync
+          method: post
